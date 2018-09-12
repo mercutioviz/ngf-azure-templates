@@ -3,10 +3,10 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminPassword": {
-      "value": "abcd1234ABCD"
+      "value": ""
     },
     "prefix": {
-      "value": "CollinsHA"
+      "value": ""
     },
     "vNetAddressSpace": {
       "value": "172.16.136.0/22"
