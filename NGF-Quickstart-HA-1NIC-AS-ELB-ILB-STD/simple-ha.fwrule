@@ -7814,39 +7814,17 @@ RuleSet{
 				}
 			}
 			action={
-				ActionRedirect{
-					name={CLOUD-AZURE-ILB-PROBE-Redirect:action}
-					readOnly={0}
-					origin={}
-					global={0}
-					comment={}
-					eventLevel={-1}
-					conn={
-						ConnRef{
-							name={CLOUD-AZURE-ILB-PROBE-Redirect:action:conn}
-							readOnly={0}
-							origin={}
-							global={0}
-							comment={}
-							ref={Dynamic NAT}
-							refid={1851552855,489,1362572598}
-						}
-					}
-					targetref={
-						NetRef{
-							name={}
-							readOnly={0}
-							origin={}
-							global={0}
-							comment={}
-							ref={placeholder.elb.amazonaws.com}
-						}
-					}
-					ipList={0}
-					proxyArp={0}
-					criticalPort={}
-				}
-			}
+                     ActionLocalRedirect{
+                        name={CLOUD-AZURE-ILB-PROBE-Redirect:action}
+                        readOnly={0}
+                        origin={}
+                        global={0}
+                        comment={}
+                        eventLevel={-1}
+                        addr={127.0.0.1:450}
+                        proxyArp={0}
+                        }
+                    }
 			parp={
 				PARPRef{
 					name={}
