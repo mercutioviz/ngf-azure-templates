@@ -1,7 +1,5 @@
 # Barracuda CloudGen Firewall for Azure - High Availability Cluster in an Availability Set using an Internal Standard Load Balancer
 
-![Build status](https://img.shields.io/vso/build/cudajvhoof/19118fdb-7d82-4c41-a1fd-b16e490dc968/7.svg)
-
 ## Introduction
 
 To provide high availability in the Azure platform a VM needs to use a Load Balancer or use the Cloud platform's rest api cloud integration to adapt the platform on failover. Since several years, the Barracuda CloudGen Firewall (NGF) uses cloud integration functionality to perform UDR rewriting to redirect traffic when an HA failover happens. This method works well for smaller deployments, but has few drawbacks when using peered VNets or if corporate policy restricts saving AAD authentication keys in 3rd party software configuration.
@@ -37,36 +35,10 @@ The package provides a deploy.ps1 and deploy.sh for Powershell or Azure CLI base
 
 To deploy via Azure Portal you can use the button below to deploy this reference architecture into your Azure subscription. Once you click on this the Azure Portal will ask you for your credentials and you are presented with a page to fill in minimal variables: Resource Group, Location, Admin password and Prefix.
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjvhoof%2Fngf-azure-templates%2Fmaster%2FNGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fjvhoof%2Fngf-azure-templates%2Fmaster%2FNGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmercutioviz%2Fngf-azure-templates%2Fmaster%2FNGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fmercutioviz%2Fngf-azure-templates%2Fmaster%2FNGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD%2Fazuredeploy.json" target="_blank">
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
-
-### Azure CLI
-
-To deploy via Azure Cloud Shell you can connect via the Azure Portal or directly to [https://shell.azure.com/](https://shell.azure.com/). 
-
-- Start up Azure Cloud Shell from the Azure Portal or go directly to [https://shell.azure.com](https://shell.azure.com/)
-- Download the latest version of the ARM templates in the persistant clouddrive:
-
-`cd ~/clouddrive/ && wget -qO- https://github.com/jvhoof/ngf-azure-templates/archive/master.zip | jar xv && cd ~/clouddrive/ngf-azure-templates-master/NGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD/ && ./deploy.sh`
-
-- Answer the questions asked by the script on the following variables: location, prefix and password.
-
-![Azure Cloud Shell Bash Edition](images/azurecloudshell1.png)
-
-### Azure Powershell 
-
-To deploy via Azure Cloud Shell you can connect to the Azure Cloud Shell via [https://shell.azure.com/](https://shell.azure.com/). 
-
-- Start up Azure Cloud Shell from the Azure Portal or go directly to [https://shell.azure.com](https://shell.azure.com/)
-- Download the latest version of the ARM templates in the persistant clouddrive:
-
-`cd ~\clouddrive\; Invoke-WebRequest -Uri "https://github.com/jvhoof/ngf-azure-templates/archive/master.zip" -OutFile "~/clouddrive/master.zip"; jar xf master.zip; cd "~/clouddrive/ngf-azure-templates-master/NGF-Quickstart-HA-1NIC-AS-ELB-ILB-STD/"; .\deploy.ps1`
-
-- Answer the questions asked by the script on the following variables: location, prefix and password.
-
-![Azure Cloud Shell Powershell Edition](images/azurecloudshell2.png)
 
 ## Next Steps
 
