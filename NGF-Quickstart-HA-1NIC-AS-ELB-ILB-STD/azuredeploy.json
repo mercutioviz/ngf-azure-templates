@@ -140,7 +140,7 @@
 
     "adminUsername": "notused",
     "singleQuotationMark": "'",
-    "dollarSign": "$",
+    "dollarSign": "X",
     "ngfSubnetSplit": "[split( parameters( 'subnetNGF' ), '/' )]",
     "ngfSubnetAddrSplit": "[split( variables( 'ngfSubnetSplit' )[0], '.' )]",
     "ngfSubnetMask": "[variables( 'ngfSubnetSplit' )[1]]",
