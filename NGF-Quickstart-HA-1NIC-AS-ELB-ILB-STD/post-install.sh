@@ -4,6 +4,7 @@ red=$1
 green=$2
 echo "Red subnet: $1" >> /tmp/post-install.log
 echo "Green subnet: $2" >> /tmp/post-install.log
+cp /tmp/template.fwrule /tmp/active.fwrule
 perl -pi -e "s#placeholder_azure_subnet_red#${red}RMASK#g" /tmp/template.fwrule
 perl -pi -e "s#placeholder_azure_subnet_green#${green}RMASK#g" /tmp/template.fwrule
 perl -pi -e 's#(\d+)RMASK#(32 - $1)#e' /tmp/template.fwrule
