@@ -42,58 +42,6 @@ if ( ! $SkipAzure ) {
     vPrint "Skipping Azure cmdlets check"
 }
 
-#====================================================
-# Install into new VNET
-function installIntoNewVNet {
-    $vnetName = Read-Host "Please enter new VNet name (<enter>=CGF-VNet)"
-    if ( ! $vnetName )
-    {
-        $vnetName = 'CGF-VNet'
-    }
-
-    do {
-        $vnetAddrSpace = Read-Host "Please enter new VNet address space (<enter>=172.16.136.0/20)"
-        if ( ! $vnetAddrSpace ) {
-            $vnetAddrSpace = '172.16.136.0/20'
-        } else {
-            $CIDROK = isCIDR($vnetAddrSpace)
-            if ( ! $CIDROK  ) {
-                Write-Host "Sorry, '$vnetAddrSpace' appears not to be a valid CIDR. Please try again." -ForegroundColor Yellow
-                $vnetAddrSpace = ''
-            }
-        }
-    } while ( ! $vnetAddrSpace )
-    $vnetName,$vnetAddrSpace
-}
-
-# Install into existing VNET
-function installIntoExistingVNet {
-    Write-Host "`n`nAvailable Virtual Networks in this subscription:"
-    $sel = UserChoice $vnets 'addrSpace' 'Please choose VNet for deployment' 'Name' 
-
-    $sel
-}
-
-# Add a new resource group
-function addNewRG {
-    $rgName = Read-Host "Please enter new resource group name (<enter>=CloudGenFW-RG)"
-    if ( ! $rgName ) {
-        $rgName = 'CloudGenFW-RG'
-    }
-
-    $rgName
-}
-
-# Get existing resource group
-function getExistingRG {
-    Write-Host "Gathering resource group information..." -ForegroundColor Cyan
-    $rgs = Get-AzureRmResourceGroup | Select-Object ResourceGroupName
-    $sel = UserChoice $rgs 'ResourceGroupName' 'Please choose Resource Group for deployment'
-
-    $sel
-}
-#====================================================
-
 ## Global variables used in building template
 $vnets = ''
 $vnetName = ''
@@ -113,7 +61,6 @@ $fw1IPAddr = ''
 $fw2IPAddr = ''
 $imageSKU = ''
 
-
 Write-Host "Barracuda CloudGen Firewall Installer Script. Press <enter> to continue, any other key to quit" -ForegroundColor Cyan
 $sel = Read-Host -Prompt "`nEnter selection "
 if ( $sel ) { 
@@ -132,8 +79,6 @@ if ( $mysubs.count -eq '1' ) {
 }
 
 Write-Host ("`nGathering stats for subscription ID: {0}" -f $sub) -ForegroundColor Cyan
-Write-Host "Gathering VNet information..." -ForegroundColor Cyan
-$vnets = Get-AzureRmVirtualNetwork | Select-Object Name,@{n='AddrSpace'; e={$_.AddressSpace.AddressPrefixes}}
 
 # New or existing VNet
 do {
